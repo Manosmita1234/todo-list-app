@@ -23,11 +23,20 @@ function addTask(){
         label.className = "taskLabel";
         label.textContent = taskInput;
 
+        let icon = document.createElement("i");
+        icon.className = "fa-solid fa-pen-to-square";
+        icon.style.marginLeft = "auto";
+        icon.style.cursor = "pointer";
+
+
+
+
         
         container.appendChild(taskContainer);
         taskContainer.appendChild(inputLabelContainer);
         inputLabelContainer.appendChild(taskList);  
         inputLabelContainer.appendChild(label);  
+        inputLabelContainer.appendChild(icon);
         taskinputText.value = "";
 
         
