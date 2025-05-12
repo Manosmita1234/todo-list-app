@@ -1,0 +1,90 @@
+body{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(246, 255, 255);
+}
+
+h1{
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+
+}
+
+#container{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    align-items: center;  
+    width: 400px;
+    border:2px  black;
+    
+}
+
+#taskInput{
+    padding: 15px;
+    font-size: 1rem;
+    margin-top: 20px;
+    border-radius: 15px;
+    width: 380px;;
+    border: none;
+    
+
+}
+
+button{
+    width:400px;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: left;
+    border:2px solid rgb(74, 74, 179);
+    color: rgb(13, 13, 195);
+    cursor: pointer;
+    background-color:rgb(221, 239, 246);
+    font-size: 1rem;
+    transition: background-color 1s ease;
+    font-weight: bold;
+}
+
+button:hover{
+    background-color: rgb(211, 232, 217);
+}
+
+button:active{
+    background-color:white;
+}
+
+.taskLabel{
+    font-size: 1rem;
+}
+
+
+
+.taskContainer{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    gap: 20px;
+
+}
+
+.input{
+    margin-right: 8px;
+    width: 20px;
+    height: 20px;
+    font-weight: bolder;
+    border: 3x solid black;
+}
+
+
+.inputLabel-container{
+    gap:20x;
+    background-color: white;
+    width: 400px;
+    margin-top: 15px;
+    height: 50px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+
+    
+}
