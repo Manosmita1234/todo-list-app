@@ -43,6 +43,7 @@ button{
     font-size: 1rem;
     transition: background-color 1s ease;
     font-weight: bold;
+    margin-top: 15px;
 }
 
 button:hover{
@@ -89,5 +90,26 @@ button:active{
     
 }
 
+.editDivContainer{
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease;
+    width: 400px;
+    border-radius: 15px;
+    background-color: white;
+    border: none;
+    min-height: 40px;
+   
+}
+
+.fa-check{
+    cursor: pointer;
+    font-size: 25px;
+    color: rgb(10, 118, 10);
+}
+
+.fa-check:hover{
+    color: rgb(101, 166, 72);
+}
 
   
