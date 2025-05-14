@@ -2,6 +2,9 @@
 let addTaskButton = document.getElementById("addTaskButton");
 let taskinputText = document.getElementById("taskInput");
 let container = document.getElementById("container");
+let searchInput = document.getElementById("searchTask");
+let allTasksArray = [];
+
 
 function addTask(){
     let taskInput = taskinputText.value.trim();
@@ -15,7 +18,8 @@ function addTask(){
         taskContainer.className = "taskcontainer";
 
         let inputLabelContainer = document.createElement("div");
-        inputLabelContainer.className = "inputLabel-container";
+        inputLabelContainer.className = "inputLabelcontainer";
+      
 
         let taskList = document.createElement("input");
         taskList.className = "input"
@@ -24,6 +28,12 @@ function addTask(){
         let label = document.createElement("label");
         label.className = "taskLabel";
         label.textContent = taskInput;
+
+        allTasksArray.push({
+          label: label,
+          inputLabelContainer: inputLabelContainer
+        });
+        
 
         let icon = document.createElement("i");
         icon.className = "fa-solid fa-pen-to-square";
@@ -76,7 +86,8 @@ function addTask(){
       let editTask = document.createElement("input");
       editTask.focus();
       editTask.type = "text";
-      editTask.value = taskInput;
+     // editTask.value = taskInput;
+      editTask.value = label.textContent;
       editTask.className = "editTask";
       
       let saveChangeicon = document.createElement("i");
@@ -108,9 +119,38 @@ function addTask(){
      deleteicon.addEventListener("click",()=>{
       taskContainer.remove();
      })
+
+
+
     }
         
     }
 
 
+    function searchtask(){
+      let searchingTask = searchInput.value.toLowerCase();
+      allTasksArray.forEach(function(task){
+        let existingvalue = task.label.innerText.toLowerCase();
+        if(existingvalue.includes(searchingTask)){
+          task.inputLabelContainer.style.display = "flex";
+        }
+        else{
+          task.inputLabelContainer.style.display = "none";
+        }
+      });
+    }
+    
+
+    
+
+searchInput.addEventListener("input", searchtask);
+
+
 addTaskButton.addEventListener("click", addTask);
+
+taskinputText.addEventListener("keydown" , function(event){
+  if(event.key === "Enter"){
+    addTask();
+  }
+});
+
