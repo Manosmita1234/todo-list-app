@@ -30,6 +30,11 @@ function addTask(){
         icon.style.marginLeft = "auto";
         icon.style.cursor = "pointer";
 
+        let deleteicon = document.createElement("i");
+        deleteicon.className = "fa-solid fa-trash";
+        deleteicon.style.cursor = "pointer";
+        deleteicon.style.padding = "5px";
+
 
         
         container.appendChild(taskContainer);
@@ -37,6 +42,7 @@ function addTask(){
         inputLabelContainer.appendChild(taskList);  
         inputLabelContainer.appendChild(label);  
         inputLabelContainer.appendChild(icon);
+        inputLabelContainer.appendChild(deleteicon);
         taskinputText.value = "";
         
         inputLabelContainer.addEventListener("click", ()=>{
@@ -50,15 +56,12 @@ function addTask(){
           }
         })
       
-    
-
      icon.addEventListener("click",()=>{
-     const existingEditDiv = taskContainer.querySelector(".editDivContainer");
-     if (existingEditDiv) {
-    existingEditDiv.remove();
+
+   if(inputLabelContainer){
+    inputLabelContainer.style.display = "none";
    }
-    
-      
+   
      let editDiv = document.createElement("div");
      editDiv.className = "editDivContainer";
 
@@ -66,42 +69,48 @@ function addTask(){
       editDiv.innerHTML = "";
       editDiv.style.height = "50px";
       editDiv.style.transform = "scaleY(1)"
-      inputLabelContainer.style.opacity = "0.3";
+     // inputLabelContainer.style.opacity = "0.3";
+    
       icon.style.pointerEvents = "none";
       taskList.disabled = true;
       let editTask = document.createElement("input");
+      editTask.focus();
       editTask.type = "text";
-      editTask.style.border = "none";
-      editTask.style.width = '90%';
-      editTask.style.height = '90%';
       editTask.value = taskInput;
       editTask.className = "editTask";
+      
       let saveChangeicon = document.createElement("i");
       saveChangeicon.className = "fas fa-check";
 
     
       saveChangeicon.addEventListener("click", ()=>{
-        taskList.disabled = false;
+        if (editDiv) {
+          editDiv.remove();
+         }
+
+        inputLabelContainer.style.display = "flex";
+        icon.style.marginLeft = "auto";
+        //taskList.disabled = false;
         icon.style.pointerEvents = "auto";
         let editTaskInput = editTask.value.trim();
         label.textContent = editTaskInput;
-        inputLabelContainer.style.opacity = "1";
+        //inputLabelContainer.style.opacity = "1";
         editTask.style.display = "none";
         saveChangeicon.style.display = "none";
         editDiv.style.transform = "scaleY(0)"
       
       })
        taskContainer.appendChild(editDiv);
-     //inputLabelContainer.appendChild(editDiv);
       editDiv.appendChild(editTask);
       editDiv.appendChild(saveChangeicon);
+     })
+
+     deleteicon.addEventListener("click",()=>{
+      taskContainer.remove();
      })
     }
         
     }
-   
-
-
 
 
 addTaskButton.addEventListener("click", addTask);
