@@ -32,7 +32,8 @@ function addTask(){
 
         allTasksArray.push({
           label: label,
-          taskContainer: taskContainer
+          taskContainer: taskContainer,
+          taskList: taskList
         });
         
 
@@ -73,7 +74,8 @@ function addTask(){
         taskinputText.value = "";
         
         //checking off of completed task
-        taskContainer.addEventListener("change", ()=>{
+        function markDone(){
+          
           if(taskList.checked){
             label.style.textDecoration = "line-through";
             label.style.opacity = "0.5";
@@ -82,9 +84,12 @@ function addTask(){
             label.style.textDecoration = "none";
             label.style.opacity = "1";
           }
-        })
-      
+        }
+
+        taskContainer.addEventListener("change",markDone);
+       
         // code to edit the existing task
+
      editIcon.addEventListener("click",()=>{     
      inputLabelContainer.style.display = "none";
      dataSpan.style.display = "none";
@@ -144,13 +149,7 @@ function addTask(){
       });
     }
     
-
- 
-
-    
-
 searchInput.addEventListener("input", searchtask);
-
 
 addTaskButton.addEventListener("click", addTask);
 
@@ -161,3 +160,55 @@ taskinputText.addEventListener("keydown" , function(event){
   }
 });
 
+
+let dropDownMenu = document.getElementById("dropDownBtn");
+let dropDownDiv = document.getElementById("dropDownDiv");
+
+dropDownMenu.addEventListener("click",()=>{
+  let existing = document.querySelector(".dropDownContentsContainer");
+  if(existing){
+    existing.remove();
+    return;
+  }
+  const dropDownContentsContainer = document.createElement("div");
+  dropDownContentsContainer.className = "dropDownContentsContainer";
+
+  const deleteAllBtn = document.createElement("button");
+  deleteAllBtn.textContent = "Delete all";
+
+  const markAllDoneBtn = document.createElement("button");
+  markAllDoneBtn.textContent = "Mark all done";
+
+  const markAllUndoneBtn = document.createElement("button");
+  markAllUndoneBtn.textContent = "Mark all undone";
+
+  dropDownDiv.appendChild(dropDownmenu);
+  dropDownDiv.appendChild(dropDownContentsContainer);
+  dropDownContentsContainer.appendChild(deleteAllBtn);
+  dropDownContentsContainer.appendChild(markAllDoneBtn);
+  dropDownContentsContainer.appendChild(markAllUndoneBtn);
+  
+   deleteAllBtn.addEventListener("click", ()=>{
+    allTasksArray.forEach(function(task){
+      task.taskContainer.remove();
+    })
+  }
+  );
+
+  markAllDoneBtn.addEventListener("click",()=>{
+        allTasksArray.forEach(function(task){
+          task.label.style.textDecoration = "line-through";
+          task.taskList.checked = true;
+          task.label.style.opacity = "0.5";
+        })
+  })
+  markAllUndoneBtn.addEventListener("click",()=>{
+    allTasksArray.forEach(function(task){
+      task.label.style.textDecoration = "none";
+      task.taskList.checked = false;
+      task.label.style.opacity = "1";
+    })
+  })
+
+
+});
