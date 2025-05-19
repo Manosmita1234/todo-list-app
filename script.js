@@ -164,12 +164,13 @@ taskinputText.addEventListener("keydown" , function(event){
 let dropDownMenu = document.getElementById("dropDownBtn");
 let dropDownDiv = document.getElementById("dropDownDiv");
 
-dropDownMenu.addEventListener("click",()=>{
-  let existing = document.querySelector(".dropDownContentsContainer");
-  if(existing){
-    existing.remove();
-    return;
-  }
+dropDownDiv.addEventListener("click",()=>{
+let existing = document.querySelector(".dropDownContentsContainer");
+if(existing){
+  existing.remove();
+  return;
+}
+ 
   const dropDownContentsContainer = document.createElement("div");
   dropDownContentsContainer.className = "dropDownContentsContainer";
 
@@ -182,7 +183,7 @@ dropDownMenu.addEventListener("click",()=>{
   const markAllUndoneBtn = document.createElement("button");
   markAllUndoneBtn.textContent = "Mark all undone";
 
-  dropDownDiv.appendChild(dropDownmenu);
+  dropDownDiv.appendChild(dropDownMenu);
   dropDownDiv.appendChild(dropDownContentsContainer);
   dropDownContentsContainer.appendChild(deleteAllBtn);
   dropDownContentsContainer.appendChild(markAllDoneBtn);
@@ -210,5 +211,11 @@ dropDownMenu.addEventListener("click",()=>{
     })
   })
 
-
 });
+
+document.addEventListener("click",()=>{
+  if(existing){
+  dropDownDiv.remove();
+}
+});
+
