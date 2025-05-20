@@ -38,7 +38,8 @@ export function handleDropDown(){
           task.checkbox.checked = true;
           task.taskLabel.style.opacity = "0.5";
         })
-  })
+  });
+  
   markAllUndoneBtn.addEventListener("click",()=>{
     allTasksArray.forEach(task=>{
       task.taskLabel.style.textDecoration = "none";

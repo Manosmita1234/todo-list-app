@@ -13,5 +13,3 @@ export function getDateData(){
     hours = hours % 12 || 12;
     return `${day} ${month} ${year} , ${hours}:${minutes} ${amPm}`;   
 }
-
-
