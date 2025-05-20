@@ -33,9 +33,15 @@ h1{
     border: none;
 }
 
+#searchTask:focus{
+    border: 2px solid royalblue;
+    outline: none;
+    box-shadow: 0 0 5px rgba(65, 105, 225, 0.5);
+}
+
 
 .taskContainer{
-  height: 55px;
+  height: 60px;
   width: 400px;
   background-color: white;
   margin-top: 15px;
@@ -53,8 +59,14 @@ h1{
     font-size: 1rem;
     margin-top: 20px;
     border-radius: 15px;
-    width: 380px;;
+    width: 380px;
     border: none;
+}
+
+#taskInput:focus{
+    border: 2px solid royalblue;
+    outline: none;
+    box-shadow: 0 0 5px rgba(65, 105, 225, 0.5);
 }
 
 #addTaskButton{
@@ -96,10 +108,11 @@ h1{
 
 
 .checkboxLabelContainer{
-    gap:20x;
-    margin-top: 5px;
+    gap:20x;   
     display: flex;
     align-items: center;
+    margin-left: 10px;
+    margin-bottom: 2px;
     font-family: 'Inter', sans-serif;   
 }
 
@@ -107,16 +120,18 @@ h1{
     width: 100%;
     height: 1px;
     height: 1px;
-    margin-left: 10px;
+    margin-left: 11px;
+    margin-bottom: 10px;
     font-size: 0.8rem;
     color:  #888;   
+
 }
 
 
-
 .editDivContainer{
-    width: 400px;
-    border-radius: 25px;
+    width: 390px;
+    border-radius: 5px;
+    height: 60px;
     background-color: white;
     border: none;
     font-family: 'Inter', sans-serif;
@@ -125,18 +140,25 @@ h1{
     align-items: center; 
 }
 
+
+
 .fa-check{
     cursor: pointer;
     font-size: 25px;
     color: rgb(10, 118, 10);
+    margin-left: 8px;
 }
 
 .fa-check:hover{
     color: rgb(101, 166, 72);
 }
 
+.fa-pen-to-square{
+    padding: 0px 13px;
+}
+
 .fa-trash:hover{
-    color: rgb(96, 69, 69)
+    color: rgb(96, 69, 69);
 
 }
 
@@ -145,7 +167,9 @@ h1{
 }
   
 
-.editTask{
+.editTask{ border: 2px solid royalblue;
+    outline: none;
+    box-shadow: 0 0 5px rgba(65, 105, 225, 0.5);
     font-size: 1rem;
     border: none;
     width: 90%;
@@ -153,6 +177,11 @@ h1{
     border-radius: 15px;
 }
 
+.editTask:focus{
+    border: 2px solid royalblue;
+    outline: none;
+    box-shadow: 0 0 5px rgba(65, 105, 225, 0.5);
+}
 
 
 #dropDownBtn{
@@ -176,37 +205,40 @@ h1{
 .dropDownContainer{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     right: 0;
     border: 1px solid #ccc;
+    background-color: white;
     border-radius: 8px;
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
-    width: 160px;
+    width: 170px;
     top:60px;
     
-   
 }
 
 .dropDownContainer button{
     color: #333;
+    width: 160px;
     font-family:  'Inter', sans-serif;
     cursor: pointer;
     font-size: 15px;
     padding: 10px 20px;
     border: none;
     top: 40px;
+    border-radius: 8px;
+    margin: 5px 5px;
     text-align: left;
-    font-weight: 400px;;
-    background-color:transparent;
-    transition: translate 0.3s ease, color 0.3s ease, background-color 0.3s ease ;    
+    font-weight: 600px;
+    background-color: white;
+    transition:color 0.3s ease, background-color 0.3s ease ;    
 }
 
 .dropDownContainer button:hover{
      background-color: #f4f4ff;
      color: #6C63FF;
      box-shadow: 0 3px 8px rgba(108, 99, 255, 0.15);
-     transform: translateX(4px);
-    
 
 }
 
