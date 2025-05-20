@@ -173,7 +173,7 @@ h1{
     background-color:  #f0f0f0;
 }
 
-.dropDownContentsContainer{
+.dropDownContainer{
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -187,7 +187,7 @@ h1{
    
 }
 
-.dropDownContentsContainer button{
+.dropDownContainer button{
     color: #333;
     font-family:  'Inter', sans-serif;
     cursor: pointer;
@@ -196,11 +196,12 @@ h1{
     border: none;
     top: 40px;
     text-align: left;
+    font-weight: 400px;;
     background-color:transparent;
     transition: translate 0.3s ease, color 0.3s ease, background-color 0.3s ease ;    
 }
 
-.dropDownContentsContainer button:hover{
+.dropDownContainer button:hover{
      background-color: #f4f4ff;
      color: #6C63FF;
      box-shadow: 0 3px 8px rgba(108, 99, 255, 0.15);

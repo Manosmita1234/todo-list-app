@@ -23,7 +23,7 @@ export function createElements(taskText){
     let dataSpan = createDataSpan();
     dataSpan.className = "dataSpan";
 
-    let editDivContainer = createEditDiv(taskLabel.value);
+    let { editDivContainer, editTask, saveChangeIcon } = createEditDiv(taskText);
 
     elements.container.appendChild(taskContainer);
     taskContainer.appendChild(checkboxLabelContainer);
@@ -40,8 +40,16 @@ export function createElements(taskText){
         checkbox: checkbox
     })
 
-    return {taskContainer,deleteIcon};
-
+    return {taskContainer,
+        deleteIcon,
+        checkbox,
+        taskLabel,
+        dataSpan,
+        editIcon,
+        checkboxLabelContainer,
+        editDivContainer,
+        editTask,
+        saveChangeIcon};
 }
 
 
@@ -68,19 +76,37 @@ export function addTask(){
         return;
     }
 
-    const {taskContainer,deleteIcon} = createElements(taskText);
+    const {taskContainer,deleteIcon,checkbox,taskLabel,dataSpan,editIcon,checkboxLabelContainer,editDivContainer,saveChangeIcon,editTask} = createElements(taskText);
     deleteIcon.addEventListener("click",()=>{
         taskContainer.remove();
     });
     elements.taskInput.value = "";
     elements.taskInput.focus();
+
+    checkbox.addEventListener("click",()=>{
+        markCompleteTask(checkbox,taskLabel);
+    });
+
+    editIcon.addEventListener("click",()=>{
+        checkboxLabelContainer.style.display = "none";
+        dataSpan.style.display = "none";
+        editDivContainer.style.display = "flex";
+        editTask.focus();
+    });
+
+    saveChangeIcon.addEventListener("click",()=>{
+        let newTask = editTask.value;
+        checkboxLabelContainer.style.display = "flex";
+        dataSpan.style.display = "flex";
+        taskLabel.textContent = newTask;
+        editDivContainer.style.display = "none";
+    });
 }
     
 function createDataSpan(){
     let dateSpan = document.createElement("span");
     dateSpan.textContent = getDateData();
     return dateSpan;
-
 }
 
 
@@ -92,15 +118,26 @@ function createEditDiv(editDivValue){
     let editTask = document.createElement("input");
     editTask.type = "text";
     editTask.className = "editTask";
-    editTask.innerHTML = editDivValue;
+    editTask.value = editDivValue;
 
-    let saveChangeicon = document.createElement("i");
-    saveChangeicon.className = "fas fa-check";
+    let saveChangeIcon = document.createElement("i");
+    saveChangeIcon.className = "fas fa-check";
 
     editDivContainer.appendChild(editTask);
-    editDivContainer.appendChild(saveChangeicon);
+    editDivContainer.appendChild(saveChangeIcon);
     
-    return editDivContainer;
+    return {editDivContainer,editTask,saveChangeIcon} ;
 }
 
+
     
+function markCompleteTask(checkbox,taskLabel){
+    if(checkbox.checked){
+        taskLabel.style.textDecoration = "line-through";
+        taskLabel.style.opacity = "0.5"; 
+    }
+    else{
+        taskLabel.style.textDecoration = "none";
+        taskLabel.style.opacity = "1";
+    }
+}
