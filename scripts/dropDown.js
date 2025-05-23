@@ -1,5 +1,5 @@
 import { elements } from "./dom.js";
-import { allTasksArray } from "./tasks.js";
+import { allTasksArray,  } from "./tasks.js";
 
 export function handleDropDown(){
     const existing = document.querySelector(".dropDownContainer");
@@ -30,6 +30,9 @@ export function handleDropDown(){
         allTasksArray.forEach(tasks=>{
             tasks.taskContainer.remove();
         })
+        localStorage.removeItem("tasks");
+        allTasksArray.length = 0;
+      
     });
 
     markAllDoneBtn.addEventListener("click",()=>{

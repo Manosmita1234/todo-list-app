@@ -1,6 +1,7 @@
 import { elements } from "./dom.js" ;
 import { getDateData } from "./dateutils.js";
 
+
 export let allTasksArray = [];
 
 export function createElements(taskText){
@@ -35,10 +36,17 @@ export function createElements(taskText){
     checkboxLabelContainer.appendChild(deleteIcon);
 
     allTasksArray.push({
-        taskContainer: taskContainer,
-        taskLabel:taskLabel,
-        checkbox: checkbox
-    })
+        taskContainer,
+        taskLabel,
+        checkbox,
+        deleteIcon,
+        dataSpan,
+        editIcon,
+        checkboxLabelContainer,
+        editDivContainer,
+        saveChangeIcon,
+        editTask
+    });
 
     return {taskContainer,
         deleteIcon,
@@ -69,6 +77,7 @@ function createDeleteIcon(){
     return deleteicon;
 }
 
+
 export function addTask(){
     let taskText = elements.taskInput.value.trim();
     if(taskText === ""){
@@ -76,15 +85,28 @@ export function addTask(){
         return;
     }
 
-    const {taskContainer,deleteIcon,checkbox,taskLabel,dataSpan,editIcon,checkboxLabelContainer,editDivContainer,saveChangeIcon,editTask} = createElements(taskText);
+  let task = createElements(taskText);
+  attachListerners(task);
+
+  storeDataToLocalStorage();
+  elements.taskInput.value = "";
+  elements.taskInput.focus();
+
+}
+
+function attachListerners({taskContainer,deleteIcon,checkbox,
+           taskLabel,dataSpan,editIcon,checkboxLabelContainer,
+           editDivContainer,saveChangeIcon,editTask}){
+    
     deleteIcon.addEventListener("click",()=>{
+        allTasksArray = allTasksArray.filter(task => task.taskContainer !== taskContainer);
         taskContainer.remove();
+        storeDataToLocalStorage();
     });
-    elements.taskInput.value = "";
-    elements.taskInput.focus();
 
     checkbox.addEventListener("click",()=>{
         markCompleteTask(checkbox,taskLabel);
+        storeDataToLocalStorage();
     });
 
     editIcon.addEventListener("click",()=>{
@@ -100,7 +122,10 @@ export function addTask(){
         dataSpan.style.display = "flex";
         taskLabel.textContent = newTask;
         editDivContainer.style.display = "none";
+
+       storeDataToLocalStorage();
     });
+
 }
     
 function createDataSpan(){
@@ -140,4 +165,29 @@ function markCompleteTask(checkbox,taskLabel){
         taskLabel.style.textDecoration = "none";
         taskLabel.style.opacity = "1";
     }
+}
+
+
+function storeDataToLocalStorage(){
+   let data = allTasksArray.map(task=>({
+    taskText : task.taskLabel.textContent,
+    checked:task.checkbox.checked
+   }));
+
+  localStorage.setItem("tasks",JSON.stringify(data));
+     
+}
+
+
+export function getDataFromLocalStorage(){
+    let getData = JSON.parse(localStorage.getItem("tasks")) || [];
+    getData.forEach(task=>{
+        const create = createElements(task.taskText);
+        const checkbox = create.checkbox;
+        checkbox.checked = task.checked;
+        
+        markCompleteTask(checkbox,create.taskLabel);
+        attachListerners(create);
+    });
+    
 }

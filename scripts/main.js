@@ -1,8 +1,7 @@
-import {addTask} from "./tasks.js";
+import {addTask , getDataFromLocalStorage} from "./tasks.js";
 import { elements } from "./dom.js";
 import { searchingTask } from "./search.js";
 import { handleDropDown } from "./dropDown.js";
-
 
 
 
@@ -21,3 +20,5 @@ elements.searchTask.addEventListener("input",()=>{
 elements.dropDownBtn.addEventListener("click",()=>{
      handleDropDown();
 });
+
+window.addEventListener("DOMContentLoaded",getDataFromLocalStorage);
