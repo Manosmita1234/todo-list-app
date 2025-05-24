@@ -27,12 +27,21 @@ export function handleDropDown(){
     container.appendChild(markAllUndoneBtn);
     
     deleteAllBtn.addEventListener("click",()=>{
+    
         allTasksArray.forEach(tasks=>{
             tasks.taskContainer.remove();
         })
         localStorage.removeItem("tasks");
         allTasksArray.length = 0;
-      
+
+        deleteAllBtn.addEventListener("click",()=>{
+        const existing = document.querySelector(".dropDownContainer");
+        if(existing){
+        existing.remove();
+        return;
+    }
+
+        })  
     });
 
     markAllDoneBtn.addEventListener("click",()=>{
@@ -40,7 +49,15 @@ export function handleDropDown(){
           task.taskLabel.style.textDecoration = "line-through";
           task.checkbox.checked = true;
           task.taskLabel.style.opacity = "0.5";
-        })
+
+         });
+        markAllDoneBtn.addEventListener("click",()=>{
+        const existing = document.querySelector(".dropDownContainer");
+        if(existing){
+        existing.remove();
+        return;
+    }
+        });
   });
   
   markAllUndoneBtn.addEventListener("click",()=>{
@@ -48,6 +65,14 @@ export function handleDropDown(){
       task.taskLabel.style.textDecoration = "none";
       task.checkbox.checked = false;
       task.taskLabel.style.opacity = "1";
+    })
+
+    markAllUndoneBtn.addEventListener("click",()=>{
+      const existing = document.querySelector(".dropDownContainer");
+      if(existing){
+        existing.remove();
+        return;
+      }
     })
   });
 

@@ -2,6 +2,7 @@ import { elements } from "./dom.js" ;
 import { getDateData } from "./dateutils.js";
 
 
+
 export let allTasksArray = [];
 
 export function createElements(taskText){
@@ -38,14 +39,7 @@ export function createElements(taskText){
     allTasksArray.push({
         taskContainer,
         taskLabel,
-        checkbox,
-        deleteIcon,
-        dataSpan,
-        editIcon,
-        checkboxLabelContainer,
-        editDivContainer,
-        saveChangeIcon,
-        editTask
+        checkbox
     });
 
     return {taskContainer,
@@ -89,6 +83,7 @@ export function addTask(){
   attachListerners(task);
 
   storeDataToLocalStorage();
+
   elements.taskInput.value = "";
   elements.taskInput.focus();
 
@@ -99,9 +94,21 @@ function attachListerners({taskContainer,deleteIcon,checkbox,
            editDivContainer,saveChangeIcon,editTask}){
     
     deleteIcon.addEventListener("click",()=>{
+        let deletedIndex = allTasksArray.findIndex(task=> task.taskContainer === taskContainer);
+        const nextSibling = taskContainer.nextSibling;
+
+        let deletedtaskData = {
+            taskText: taskLabel.textContent,
+            checkStatus:checkbox.checked,
+            nextSibling: nextSibling
+        }
+        console.log(deletedtaskData.nextSibling)
         allTasksArray = allTasksArray.filter(task => task.taskContainer !== taskContainer);
         taskContainer.remove();
         storeDataToLocalStorage();
+
+        handleUndoDiv(deletedtaskData.taskText,deletedtaskData.checkStatus,deletedtaskData.nextSibling);
+
     });
 
     checkbox.addEventListener("click",()=>{
@@ -154,6 +161,44 @@ function createEditDiv(editDivValue){
     return {editDivContainer,editTask,saveChangeIcon} ;
 }
 
+function handleUndoDiv(taskText,checkbox,nextSibling){
+    let undoDiv = document.createElement("div");
+    undoDiv.className = "undoDiv";
+    undoDiv.textContent = "task deleted";
+
+    let undoButton = document.createElement("button");
+    undoButton.className = "undoButton";
+    undoButton.textContent = "Undo";
+
+    let closeIcon = document.createElement("i");
+    closeIcon.className = "fa-solid fa-xmark";
+    closeIcon.style.cursor = "pointer";
+
+    elements.container.insertBefore(undoDiv,nextSibling);
+    undoDiv.appendChild(undoButton);
+    undoDiv.appendChild(closeIcon);
+
+    setTimeout(()=>{
+        undoDiv.style.display = "none";
+    },5000);
+
+    undoButton.addEventListener("click",()=>{
+        const existing = document.querySelector(".undoDiv");
+        if(existing){
+            undoDiv.remove();
+        }
+         let task = createElements(taskText);
+         task.checkbox.checked = checkbox;
+         markCompleteTask(task.checkbox ,task.taskLabel)
+         attachListerners(task);
+
+         storeDataToLocalStorage();
+    });
+
+    closeIcon.addEventListener("click",()=>{
+        undoDiv.remove();
+    })
+}
 
     
 function markCompleteTask(checkbox,taskLabel){

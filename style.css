@@ -159,7 +159,10 @@ h1{
 
 .fa-trash:hover{
     color: rgb(96, 69, 69);
+}
 
+.fa-trash:active{
+    color: rgb(199, 17, 17);
 }
 
 .fa-pen-to-square:hover{
@@ -242,3 +245,34 @@ h1{
 
 }
 
+.undoDiv{
+    height:60px;
+    width: 400px;
+    background-color: #e6ffe6; 
+    color: #2e7d32;
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    font-size: 20px;
+    font-weight: 400;
+    border-radius: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
+}
+
+.undoButton{
+    width: 60px;
+    height: 40px;
+    border-radius: 10px;
+    margin-left: 180px;
+    cursor: pointer;
+    border: none;
+    transition: background 0.3 ease;
+    color: white;
+    background-color: #4caf50;
+    
+}
+
+.undoButton:hover {
+  background-color: #388e3c;
+}
