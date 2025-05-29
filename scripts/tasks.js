@@ -18,7 +18,7 @@ export function createElements(taskText){
 
     let taskLabel = document.createElement("label");
     taskLabel.className = "taskLabel";
-    taskLabel.textContent = taskText;
+    taskLabel.innerHTML = taskText;
 
     let editIcon = createEditIcon();
     let deleteIcon = createDeleteIcon();
@@ -73,19 +73,20 @@ function createDeleteIcon(){
 
 
 export function addTask(){
-    let taskText = elements.taskInput.value.trim();
-    if(taskText === ""){
+    let taskText = elements.inputTask.innerHTML.trim();
+        if(taskText === ""){
         alert("Please Enter a task");
         return;
     }
 
-  let task = createElements(taskText);
-  attachListerners(task);
+   let task = createElements(taskText);
+   attachListerners(task);
 
-  storeDataToLocalStorage();
+   storeDataToLocalStorage();
 
-  elements.taskInput.value = "";
-  elements.taskInput.focus();
+   elements.inputTask.innerHTML = "";
+   elements.inputTask.focus();
+
 
 }
 
@@ -94,7 +95,6 @@ function attachListerners({taskContainer,deleteIcon,checkbox,
            editDivContainer,saveChangeIcon,editTask}){
     
     deleteIcon.addEventListener("click",()=>{
-        let deletedIndex = allTasksArray.findIndex(task=> task.taskContainer === taskContainer);
         const nextSibling = taskContainer.nextSibling;
 
         let deletedtaskData = {
@@ -102,7 +102,7 @@ function attachListerners({taskContainer,deleteIcon,checkbox,
             checkStatus:checkbox.checked,
             nextSibling: nextSibling
         }
-        console.log(deletedtaskData.nextSibling)
+     
         allTasksArray = allTasksArray.filter(task => task.taskContainer !== taskContainer);
         taskContainer.remove();
         storeDataToLocalStorage();
@@ -127,7 +127,7 @@ function attachListerners({taskContainer,deleteIcon,checkbox,
         let newTask = editTask.value;
         checkboxLabelContainer.style.display = "flex";
         dataSpan.style.display = "flex";
-        taskLabel.textContent = newTask;
+        taskLabel.innerHTML = newTask;
         editDivContainer.style.display = "none";
 
        storeDataToLocalStorage();

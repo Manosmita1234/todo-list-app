@@ -9,6 +9,5 @@ export function searchingTask(searchInput){
         task.taskContainer.style.display = existingTask.includes(searchTaskInput)? "flex" : "none";
     })
 
-
 }
     

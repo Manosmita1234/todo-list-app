@@ -23,6 +23,35 @@ h1{
     position: relative;  
 }
 
+#richEditorTaskDiv{
+    padding: 15px;
+    font-size: 19px;
+    margin-top: 20px;
+    border-radius: 15px;
+    width: 380px;
+    border: none;
+    cursor: text;
+    height: auto;
+    min-height: 20px;
+    background-color: white;
+}
+
+.medium-editor-toolbar {
+    z-index: 9999 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 9999 !important;
+}
+
+#richEditorTaskDiv:focus 
+    {
+    border: 2px solid royalblue;
+    outline: none;
+    box-shadow: 0 0 5px rgba(65, 105, 225, 0.5);
+}
+
+
 
 #searchTask{
     padding:15px;
@@ -170,7 +199,8 @@ h1{
 }
   
 
-.editTask{ border: 2px solid royalblue;
+.editTask{ 
+    border: 2px solid royalblue;
     outline: none;
     box-shadow: 0 0 5px rgba(65, 105, 225, 0.5);
     font-size: 1rem;
@@ -276,3 +306,5 @@ h1{
 .undoButton:hover {
   background-color: #388e3c;
 }
+
+

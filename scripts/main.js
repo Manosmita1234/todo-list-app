@@ -7,8 +7,9 @@ import { handleDropDown } from "./dropDown.js";
 
 elements.addTaskButton.addEventListener("click",addTask);
 
-elements.taskInput.addEventListener("keydown",(event)=>{
+elements.inputTask.addEventListener("keydown",(event)=>{
     if(event.key === "Enter"){
+        event.preventDefault();
        addTask();
     }
 });
@@ -22,3 +23,8 @@ elements.dropDownBtn.addEventListener("click",()=>{
 });
 
 window.addEventListener("DOMContentLoaded",getDataFromLocalStorage);
+
+
+const quill = new Quill('#richEditorTaskDiv', {
+    theme: 'snow'
+  });
