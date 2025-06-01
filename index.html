@@ -6,22 +6,33 @@
     <title>todo app</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-   
-
-     
+   <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" /> 
      
 </head>
 <body>
     <div id="container">
   <h1>My Tasks</h1>
+
         <div id="dropDownDiv"> <button id="dropDownBtn"><i class="fa-solid fa-ellipsis-vertical"></i></button></div>
-         <button id="addTaskButton">+ Add Task</button>
-        <div id="richEditorTaskDiv" class="editable" contenteditable="true" data-placeholder="Enter task..."></div>
-         <hr/>         
-        <input type="search" placeholder="Search task" id="searchTask"/>
+
+        <div id="addTaskButtonDiv">
+            <button id="addTaskButton">+ Add Task</button>
+        </div>
+
+         <div class="richTextEditorWrapper">
+             <div id="richEditorTaskDiv"></div>
+         </div>
+
+         <div id="searchBarDiv">
+             <input type="search" placeholder="Search task" id="searchTask"/>
+         </div>
+
+         <div id="taskContainerWrapper"></div>
+                 
 
     </div>  
-    
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
     <script type="module" src="./scripts/main.js"></script>
 </body>
 </html>
+    

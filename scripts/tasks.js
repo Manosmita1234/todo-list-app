@@ -1,11 +1,16 @@
 import { elements } from "./dom.js" ;
 import { getDateData } from "./dateutils.js";
+import { quill } from "./main.js";
 
 
 
 export let allTasksArray = [];
 
 export function createElements(taskText){
+
+    let taskContainerWrapper = document.createElement("div");
+    taskContainerWrapper.className = "taskContainerWrapper";
+
     let taskContainer = document.createElement("div");
     taskContainer.className = "taskContainer";
 
@@ -27,7 +32,8 @@ export function createElements(taskText){
 
     let { editDivContainer, editTask, saveChangeIcon } = createEditDiv(taskText);
 
-    elements.container.appendChild(taskContainer);
+
+    elements.taskContainerWrapper.appendChild(taskContainer);
     taskContainer.appendChild(checkboxLabelContainer);
     taskContainer.appendChild(dataSpan);
     taskContainer.appendChild(editDivContainer);
@@ -68,29 +74,31 @@ function createDeleteIcon(){
     deleteicon.className = "fa-solid fa-trash";
     deleteicon.style.cursor = "pointer";
     deleteicon.style.padding = "5px";
+    deleteicon.style.marginRight = "5px";
     return deleteicon;
 }
 
 
 export function addTask(){
-    let taskText = elements.inputTask.innerHTML.trim();
-        if(taskText === ""){
+ 
+   let taskText = quill.root.innerHTML.trim();
+        if(taskText === "" || taskText === "<p><br></p>"){
         alert("Please Enter a task");
         return;
     }
 
    let task = createElements(taskText);
-   attachListerners(task);
+   attachListeners(task);
 
    storeDataToLocalStorage();
 
-   elements.inputTask.innerHTML = "";
-   elements.inputTask.focus();
-
+    quill.root.innerHTML = ""; 
+   // quill.focus();
+   setTimeout(() => quill.focus(), 0);
 
 }
 
-function attachListerners({taskContainer,deleteIcon,checkbox,
+function attachListeners({taskContainer,deleteIcon,checkbox,
            taskLabel,dataSpan,editIcon,checkboxLabelContainer,
            editDivContainer,saveChangeIcon,editTask}){
     
@@ -98,7 +106,7 @@ function attachListerners({taskContainer,deleteIcon,checkbox,
         const nextSibling = taskContainer.nextSibling;
 
         let deletedtaskData = {
-            taskText: taskLabel.textContent,
+            taskText: taskLabel.innerHTML,
             checkStatus:checkbox.checked,
             nextSibling: nextSibling
         }
@@ -190,7 +198,7 @@ function handleUndoDiv(taskText,checkbox,nextSibling){
          let task = createElements(taskText);
          task.checkbox.checked = checkbox;
          markCompleteTask(task.checkbox ,task.taskLabel)
-         attachListerners(task);
+         attachListeners(task);
 
          storeDataToLocalStorage();
     });
@@ -215,7 +223,7 @@ function markCompleteTask(checkbox,taskLabel){
 
 function storeDataToLocalStorage(){
    let data = allTasksArray.map(task=>({
-    taskText : task.taskLabel.textContent,
+    taskText : task.taskLabel.innerHTML,
     checked:task.checkbox.checked
    }));
 
@@ -232,7 +240,7 @@ export function getDataFromLocalStorage(){
         checkbox.checked = task.checked;
         
         markCompleteTask(checkbox,create.taskLabel);
-        attachListerners(create);
+        attachListeners(create);
     });
     
 }

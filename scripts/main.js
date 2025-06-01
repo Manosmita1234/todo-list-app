@@ -25,6 +25,15 @@ elements.dropDownBtn.addEventListener("click",()=>{
 window.addEventListener("DOMContentLoaded",getDataFromLocalStorage);
 
 
-const quill = new Quill('#richEditorTaskDiv', {
-    theme: 'snow'
+export const quill = new Quill('#richEditorTaskDiv', {
+    theme: 'snow',
+     placeholder: 'Enter task...',
+    modules: {
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],
+      ['clean'],
+      [{ 'color': [] }, { 'background': [] }],      
+    ]
+  }
   });
+
