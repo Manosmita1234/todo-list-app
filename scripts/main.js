@@ -2,6 +2,7 @@ import {addTask , getDataFromLocalStorage} from "./tasks.js";
 import { elements } from "./dom.js";
 import { searchingTask } from "./search.js";
 import { handleDropDown } from "./dropDown.js";
+import { filterTask } from "./filter.js";
 
 
 
@@ -37,3 +38,6 @@ export const quill = new Quill('#richEditorTaskDiv', {
   }
   });
 
+  elements.filterTaskButton.addEventListener("click",()=>{
+    filterTask();
+  });

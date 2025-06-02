@@ -141,7 +141,6 @@ function attachListeners({taskContainer,deleteIcon,checkbox,
 
        storeDataToLocalStorage();
     });
-
 }
     
 function createDataSpan(){

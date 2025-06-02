@@ -8,5 +8,6 @@
     searchTask: document.getElementById("searchTask"),
     dropDownBtn: document.getElementById("dropDownBtn"),
     dropDownDiv: document.getElementById("dropDownDiv"),
-    taskContainerWrapper: document.getElementById("taskContainerWrapper")
+    taskContainerWrapper: document.getElementById("taskContainerWrapper"),
+    filterTaskButton: document.getElementById("filterButton")
  };
