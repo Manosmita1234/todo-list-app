@@ -100,6 +100,10 @@ h1{
     background-color:white;
 }
 
+.taskLabel{
+    display: flex;
+    align-items: center;
+}
 
 
 .checkbox{

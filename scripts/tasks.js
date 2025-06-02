@@ -33,12 +33,15 @@ export function createElements(taskText){
     let { editDivContainer, editTask, saveChangeIcon } = createEditDiv(taskText);
 
 
+
     elements.taskContainerWrapper.appendChild(taskContainer);
     taskContainer.appendChild(checkboxLabelContainer);
     taskContainer.appendChild(dataSpan);
     taskContainer.appendChild(editDivContainer);
     checkboxLabelContainer.appendChild(checkbox);
     checkboxLabelContainer.appendChild(taskLabel);
+
+
     checkboxLabelContainer.appendChild(editIcon);
     checkboxLabelContainer.appendChild(deleteIcon);
 
@@ -78,7 +81,6 @@ function createDeleteIcon(){
     return deleteicon;
 }
 
-
 export function addTask(){
  
    let taskText = quill.root.innerHTML.trim();
@@ -93,7 +95,6 @@ export function addTask(){
    storeDataToLocalStorage();
 
     quill.root.innerHTML = ""; 
-   // quill.focus();
    setTimeout(() => quill.focus(), 0);
 
 }
