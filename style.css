@@ -72,9 +72,43 @@ footer{
     color: #6b6a6a;
 }
 
+#filterButton:hover{
+    background-color: #f4f4ff; ;
+}
+
 .filterTaskDiv{
-    height: 50px;
-    width: 60px;
+    height: 90px;
+    width: 170px;
+    background-color: white;
+    position: absolute;
+    bottom: 330px;
+    border-radius: 8px;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+.filterTaskDiv button{
+    color: #333;
+    width: 160px;
+    font-family:  'Inter', sans-serif;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 10px 20px;
+    border: none;
+    top: 40px;
+    border-radius: 8px;
+    margin: 5px 5px;
+    text-align: left;
+    font-weight: 600px;
+    background-color: white;
+    transition:color 0.3s ease, background-color 0.3s ease ;  
+}
+
+.filterTaskDiv button:hover{
+    background-color: #f4f4ff;
+    color: #6C63FF;
+    box-shadow: 0 3px 8px rgba(108, 99, 255, 0.15);
+
 }
 .taskContainer{
   height: 60px;
