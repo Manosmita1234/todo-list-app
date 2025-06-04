@@ -63,6 +63,7 @@ footer{
     width: 50px;
     height: 50px;
     margin-top: 8px;
+    position: relative;
 }
 
 .fa-filter{
@@ -77,11 +78,11 @@ footer{
 }
 
 .filterTaskDiv{
-    height: 140px;
+    height: 130px;
     width: 170px;
     background-color: white;
     position: absolute;
-    bottom: 330px;
+    top: 50px;
     border-radius: 8px;
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
 }
@@ -220,23 +221,59 @@ footer{
     color: rgb(101, 166, 72);
 }
 
-.fa-pen-to-square{
-    padding: 0px 13px;
+.deleteTaskBtn{
+    background-color: red;
 }
 
-.fa-trash:hover{
-    color: rgb(96, 69, 69);
+.fa-ellipsis-vertical{
+    background-color: white;
+    border: none;
+    position: relative;
+    margin-left: auto;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 1rem;
 }
 
-.fa-trash:active{
-    color: rgb(199, 17, 17);
-}
-
-.fa-pen-to-square:hover{
-    color: rgb(96, 95, 95);
+.fa-ellipsis-vertical:hover{
+    background-color: #f4f4ff; ;
 }
   
+.editDeleteContainer{
+    height: 95px;
+    width: 130px;
+    background-color: white;
+    position:absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    z-index: 1;
+}
 
+.editDeleteContainer button{
+    color: #333;
+    width: 120px;
+    font-family:  'Inter', sans-serif;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 10px 20px;
+    border: none;
+    top: 40px;
+    border-radius: 8px;
+    margin: 5px 5px;
+    text-align: left;
+    font-weight: 600px;
+    background-color: white;
+    transition:color 0.3s ease, background-color 0.3s ease ;  
+}
+
+.editDeleteContainer button:hover{
+    background-color: #f4f4ff;
+    color: #6C63FF;
+    box-shadow: 0 3px 8px rgba(108, 99, 255, 0.15);
+}
 .editTask{ 
     border: 2px solid royalblue;
     outline: none;

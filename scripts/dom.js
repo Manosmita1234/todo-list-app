@@ -9,5 +9,5 @@
     dropDownBtn: document.getElementById("dropDownBtn"),
     dropDownDiv: document.getElementById("dropDownDiv"),
     taskContainerWrapper: document.getElementById("taskContainerWrapper"),
-    filterTaskButton: document.getElementById("filterButton")
+    filterTaskButton: document.getElementById("filterButton"),
  };

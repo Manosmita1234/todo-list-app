@@ -17,6 +17,21 @@ export function createElements(taskText){
     let checkboxLabelContainer = document.createElement("div");
     checkboxLabelContainer.className = "checkboxLabelContainer";
 
+     const { editDeleteContainer, editTaskbtn, deleteTaskbtn } = createEditDeleteContainer();
+
+
+    let editDeleteButton = document.createElement("button");
+    editDeleteButton.className = "fa-solid fa-ellipsis-vertical";
+    editDeleteButton.addEventListener("click",()=>{
+        const existing= document.querySelector(".editDeleteContainer");
+        if(existing){
+            existing.remove();
+            return
+        }
+
+        editDeleteButton.appendChild(editDeleteContainer);
+    })
+
     let checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.className = "checkbox";
@@ -25,13 +40,10 @@ export function createElements(taskText){
     taskLabel.className = "taskLabel";
     taskLabel.innerHTML = taskText;
 
-    let editIcon = createEditIcon();
-    let deleteIcon = createDeleteIcon();
     let dataSpan = createDataSpan();
     dataSpan.className = "dataSpan";
-
+   
     let { editDivContainer, editTask, saveChangeIcon } = createEditDiv(taskText);
-
 
 
     elements.taskContainerWrapper.appendChild(taskContainer);
@@ -40,10 +52,7 @@ export function createElements(taskText){
     taskContainer.appendChild(editDivContainer);
     checkboxLabelContainer.appendChild(checkbox);
     checkboxLabelContainer.appendChild(taskLabel);
-
-
-    checkboxLabelContainer.appendChild(editIcon);
-    checkboxLabelContainer.appendChild(deleteIcon);
+    checkboxLabelContainer.appendChild(editDeleteButton);
 
     allTasksArray.push({
         taskContainer,
@@ -52,34 +61,35 @@ export function createElements(taskText){
     });
 
     return {taskContainer,
-        deleteIcon,
         checkbox,
         taskLabel,
         dataSpan,
-        editIcon,
         checkboxLabelContainer,
         editDivContainer,
         editTask,
+        deleteTaskbtn,
+        editTaskbtn,
         saveChangeIcon};
 }
 
+function createEditDeleteContainer(){
+     
+    let editDeleteContainer = document.createElement("div");
+    editDeleteContainer.className = "editDeleteContainer";
 
-function createEditIcon(){
-    const editIcon = document.createElement("i");
-    editIcon.className = "fa-solid fa-pen-to-square";
-    editIcon.style.marginLeft = "auto";
-    editIcon.style.cursor = "pointer";
-    return editIcon;
+    let editTaskbtn = document.createElement("button");
+    editTaskbtn.innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Edit`;
+
+    let deleteTaskbtn = document.createElement("button");
+    deleteTaskbtn.innerHTML = `<i class="fa-solid fa-trash"></i> Delete`;
+    deleteTaskbtn.style.color = "red";
+
+    editDeleteContainer.appendChild(editTaskbtn);
+    editDeleteContainer.appendChild(deleteTaskbtn)
+
+    return { editDeleteContainer, editTaskbtn, deleteTaskbtn };
 }
 
-function createDeleteIcon(){
-    let deleteicon = document.createElement("i");
-    deleteicon.className = "fa-solid fa-trash";
-    deleteicon.style.cursor = "pointer";
-    deleteicon.style.padding = "5px";
-    deleteicon.style.marginRight = "5px";
-    return deleteicon;
-}
 
 export function addTask(){
  
@@ -99,12 +109,24 @@ export function addTask(){
 
 }
 
-function attachListeners({taskContainer,deleteIcon,checkbox,
-           taskLabel,dataSpan,editIcon,checkboxLabelContainer,
-           editDivContainer,saveChangeIcon,editTask}){
-    
-    deleteIcon.addEventListener("click",()=>{
-        const nextSibling = taskContainer.nextSibling;
+function attachListeners({taskContainer,checkbox,
+           taskLabel,dataSpan,checkboxLabelContainer,
+           editDivContainer,saveChangeIcon,editTask,editTaskbtn,deleteTaskbtn}){
+
+    checkbox.addEventListener("click",()=>{
+        markCompleteTask(checkbox,taskLabel);
+        storeDataToLocalStorage();
+    });
+
+    editTaskbtn.addEventListener("click",()=>{
+        checkboxLabelContainer.style.display = "none";
+        dataSpan.style.display = "none";
+        editDivContainer.style.display = "flex";
+        editTask.focus();
+        });
+
+    deleteTaskbtn.addEventListener("click",()=>{
+             const nextSibling = taskContainer.nextSibling;
 
         let deletedtaskData = {
             taskText: taskLabel.innerHTML,
@@ -118,19 +140,7 @@ function attachListeners({taskContainer,deleteIcon,checkbox,
 
         handleUndoDiv(deletedtaskData.taskText,deletedtaskData.checkStatus,deletedtaskData.nextSibling);
 
-    });
-
-    checkbox.addEventListener("click",()=>{
-        markCompleteTask(checkbox,taskLabel);
-        storeDataToLocalStorage();
-    });
-
-    editIcon.addEventListener("click",()=>{
-        checkboxLabelContainer.style.display = "none";
-        dataSpan.style.display = "none";
-        editDivContainer.style.display = "flex";
-        editTask.focus();
-    });
+        })    
 
     saveChangeIcon.addEventListener("click",()=>{
         let newTask = editTask.value;
@@ -182,7 +192,12 @@ function handleUndoDiv(taskText,checkbox,nextSibling){
     closeIcon.className = "fa-solid fa-xmark";
     closeIcon.style.cursor = "pointer";
 
-    elements.container.insertBefore(undoDiv,nextSibling);
+    if (nextSibling) {
+  elements.container.insertBefore(undoDiv, nextSibling);
+} else {
+  elements.container.appendChild(undoDiv);
+}
+
     undoDiv.appendChild(undoButton);
     undoDiv.appendChild(closeIcon);
 
