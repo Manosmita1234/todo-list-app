@@ -13,11 +13,12 @@ export function createElements(taskText){
 
     let taskContainer = document.createElement("div");
     taskContainer.className = "taskContainer";
+    taskContainer.setAttribute("draggable","true");
 
     let checkboxLabelContainer = document.createElement("div");
     checkboxLabelContainer.className = "checkboxLabelContainer";
 
-     const { editDeleteContainer, editTaskbtn, deleteTaskbtn } = createEditDeleteContainer();
+    const { editDeleteContainer, editTaskbtn, deleteTaskbtn } = createEditDeleteContainer();
 
 
     let editDeleteButton = document.createElement("button");
@@ -28,9 +29,13 @@ export function createElements(taskText){
             existing.remove();
             return
         }
-
         editDeleteButton.appendChild(editDeleteContainer);
     })
+    
+    let dragicon = document.createElement("i");
+    dragicon.className = "fa-solid fa-grip-vertical dragIcon";
+    dragicon.style.padding = "5px 6px";
+    dragicon.style.cursor = "grab";
 
     let checkbox = document.createElement("input");
     checkbox.type = "checkbox";
@@ -45,11 +50,11 @@ export function createElements(taskText){
    
     let { editDivContainer, editTask, saveChangeIcon } = createEditDiv(taskText);
 
-
     elements.taskContainerWrapper.appendChild(taskContainer);
     taskContainer.appendChild(checkboxLabelContainer);
     taskContainer.appendChild(dataSpan);
     taskContainer.appendChild(editDivContainer);
+    checkboxLabelContainer.appendChild(dragicon);
     checkboxLabelContainer.appendChild(checkbox);
     checkboxLabelContainer.appendChild(taskLabel);
     checkboxLabelContainer.appendChild(editDeleteButton);
@@ -69,7 +74,9 @@ export function createElements(taskText){
         editTask,
         deleteTaskbtn,
         editTaskbtn,
-        saveChangeIcon};
+        dragicon,
+        saveChangeIcon,
+    };
 }
 
 function createEditDeleteContainer(){
@@ -106,6 +113,8 @@ export function addTask(){
 
     quill.root.innerHTML = ""; 
    setTimeout(() => quill.focus(), 0);
+
+   setupDragEvents(task.taskContainer);
 
 }
 
