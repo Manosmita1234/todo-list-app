@@ -2,15 +2,39 @@ import { allTasksArray } from "./tasks.js";
 
 let draggingItem = null;
 
-export function dragItems(container){
+export function dragItems(){
     allTasksArray.forEach(items=>{
-    items.dragicon.addEventListener("dragstart",()=>{
-       draggingItem = items.Container;
-       setTimeout(() => {
-            items.classList.add('dragging');
-        }, 0)
-       console.log(draggingItem);
+        const taskContainer = items.taskContainer;
+        
+        taskContainer.addEventListener("dragstart",()=>{
+            draggingItem = taskContainer;
+            taskContainer.classList.add("dragging");
+            console.log(draggingItem);
+
+        })
+
+        taskContainer.addEventListener("dragover",(e)=>{
+         e.preventDefault();   
+        });
+
+        taskContainer.addEventListener("drop",()=>{
+            const parent = taskContainer.parentNode;
+            parent.insertBefore(draggingItem,taskContainer); 
+         
+         if (draggingItem) {
+                draggingItem.classList.remove("dragging");
+                draggingItem = null;
+            }
+
+        });
+        
     })
-})
-}
+
+    
+    
+       
+       
+ 
+    }
+
 

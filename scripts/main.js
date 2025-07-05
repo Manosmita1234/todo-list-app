@@ -1,9 +1,10 @@
-import {addTask , createElements, getDataFromLocalStorage} from "./tasks.js";
+import {addTask, getDataFromLocalStorage,allTasksArray} from "./tasks.js";
 import { elements } from "./dom.js";
 import { searchingTask } from "./search.js";
 import { handleDropDown } from "./dropDown.js";
 import { filterTask } from "./filter.js";
 import { dragItems } from "./drag.js";
+
 
 
 elements.addTaskButton.addEventListener("click",addTask);
@@ -23,7 +24,10 @@ elements.dropDownBtn.addEventListener("click",()=>{
      handleDropDown();
 });
 
-window.addEventListener("DOMContentLoaded",getDataFromLocalStorage);
+window.addEventListener("DOMContentLoaded",()=>{
+  getDataFromLocalStorage();
+  dragItems();
+});
 
 
 export const quill = new Quill('#richEditorTaskDiv', {

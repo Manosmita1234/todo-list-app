@@ -382,4 +382,8 @@ footer{
   background-color: #388e3c;
 }
 
+.dragging {
+  opacity: 0.5;
+}
+
 

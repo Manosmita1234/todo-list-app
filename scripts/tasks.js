@@ -62,7 +62,8 @@ export function createElements(taskText){
     allTasksArray.push({
         taskContainer,
         taskLabel,
-        checkbox
+        checkbox,
+        dragicon
     });
 
     return {taskContainer,
