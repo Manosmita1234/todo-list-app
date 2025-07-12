@@ -386,4 +386,36 @@ footer{
   opacity: 0.5;
 }
 
+.priorityDiv{
+    height:50px;
+    font-size: 1rem;
+    margin-top: 10px;
+    border-radius: 15px;
+    width: 100%;;
+    border: none;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+.fa-angle-down{
+    display: flex;
+    align-self: flex-end;
+    position: relative;
+    
+}
+
+.dropdownMenu{
+    height: 80px;
+    width: 100%;
+    position: absolute;
+    top: 400px;
+    z-index: 1;
+    background-color: white;
+    border: none;
+    border-radius: 15px;
+    
+}
 

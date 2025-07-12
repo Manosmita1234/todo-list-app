@@ -10,4 +10,6 @@
     dropDownDiv: document.getElementById("dropDownDiv"),
     taskContainerWrapper: document.getElementById("taskContainerWrapper"),
     filterTaskButton: document.getElementById("filterButton"),
+    dropdownIcon: document.querySelector(".toggle-icon"),
+    priorityDiv: document.querySelector(".priorityDiv")
  };

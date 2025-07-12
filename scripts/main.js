@@ -4,7 +4,7 @@ import { searchingTask } from "./search.js";
 import { handleDropDown } from "./dropDown.js";
 import { filterTask } from "./filter.js";
 import { dragItems } from "./drag.js";
-
+import { createDropdownmenu } from "./priority.js";
 
 
 elements.addTaskButton.addEventListener("click",addTask);
@@ -47,3 +47,7 @@ export const quill = new Quill('#richEditorTaskDiv', {
     filterTask();
   });
 
+  elements.priorityDiv.addEventListener("click",()=>{
+     console.log('Dropdown icon clicked!');
+    createDropdownmenu();
+  });
