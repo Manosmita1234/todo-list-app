@@ -48,6 +48,5 @@ export const quill = new Quill('#richEditorTaskDiv', {
   });
 
   elements.priorityDiv.addEventListener("click",()=>{
-     console.log('Dropdown icon clicked!');
     createDropdownmenu();
   });

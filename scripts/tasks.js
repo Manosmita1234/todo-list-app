@@ -1,7 +1,7 @@
 import { elements } from "./dom.js" ;
 import { getDateData } from "./dateutils.js";
 import { quill } from "./main.js";
-
+import { createPriority } from "./priority.js";
 
 
 export let allTasksArray = [];
@@ -45,14 +45,23 @@ export function createElements(taskText){
     taskLabel.className = "taskLabel";
     taskLabel.innerHTML = taskText;
 
+    let taskInfoDiv = document.createElement("div");
+    taskInfoDiv.className = "taskInfoDiv";
+    taskInfoDiv.style.display = "flex"
+
     let dataSpan = createDataSpan();
     dataSpan.className = "dataSpan";
+    
+
+    let prioritySpan = createPriority();
    
     let { editDivContainer, editTask, saveChangeIcon } = createEditDiv(taskText);
 
     elements.taskContainerWrapper.appendChild(taskContainer);
     taskContainer.appendChild(checkboxLabelContainer);
-    taskContainer.appendChild(dataSpan);
+    taskContainer.appendChild(taskInfoDiv);
+    taskInfoDiv.appendChild(dataSpan);
+    taskInfoDiv.appendChild(prioritySpan);
     taskContainer.appendChild(editDivContainer);
     checkboxLabelContainer.appendChild(dragicon);
     checkboxLabelContainer.appendChild(checkbox);
@@ -63,7 +72,8 @@ export function createElements(taskText){
         taskContainer,
         taskLabel,
         checkbox,
-        dragicon
+        dragicon,
+        prioritySpan
     });
 
     return {taskContainer,
@@ -77,6 +87,7 @@ export function createElements(taskText){
         editTaskbtn,
         dragicon,
         saveChangeIcon,
+        prioritySpan
     };
 }
 
@@ -246,10 +257,12 @@ function markCompleteTask(checkbox,taskLabel){
 }
 
 
-function storeDataToLocalStorage(){
+export function storeDataToLocalStorage(){
    let data = allTasksArray.map(task=>({
     taskText : task.taskLabel.innerHTML,
-    checked:task.checkbox.checked
+    checked:task.checkbox.checked,
+    priority:task.prioritySpan.textContent
+
    }));
 
   localStorage.setItem("tasks",JSON.stringify(data));
@@ -263,6 +276,22 @@ export function getDataFromLocalStorage(){
         const create = createElements(task.taskText);
         const checkbox = create.checkbox;
         checkbox.checked = task.checked;
+        const prioritySpan = create.prioritySpan;
+
+         if (prioritySpan) {
+      prioritySpan.textContent = task.priority;
+
+      if (task.priority === "high") {
+        prioritySpan.style.backgroundColor = "#ff4d4d";
+        prioritySpan.style.color = "#000000"
+      } else if (task.priority === "medium") {
+        prioritySpan.style.backgroundColor = "#ffc107";
+        prioritySpan.style.color = "#000000"
+      } else {
+        prioritySpan.style.backgroundColor = "#66bb6a";
+         prioritySpan.style.color = "#000000"
+      }
+    }
         
         markCompleteTask(checkbox,create.taskLabel);
         attachListeners(create);

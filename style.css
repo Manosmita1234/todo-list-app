@@ -189,7 +189,7 @@ footer{
 }
 
 .dataSpan{
-    width: auto;
+    width: 150px;
     height: auto;
     margin-left: 11px;
     font-size: 0.8rem;
@@ -408,7 +408,7 @@ footer{
 }
 
 .dropdownMenu{
-    height: 80px;
+    height: 100px;
     width: 100%;
     position: absolute;
     top: 400px;
@@ -416,6 +416,35 @@ footer{
     background-color: white;
     border: none;
     border-radius: 15px;
-    
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dropdownMenu div{
+    color: #333;
+    font-family:  'Inter', sans-serif;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 5px 8px;
+    border: none;
+    border-radius: 8px;
+    margin: 5px 5px;
+    text-align: left;
+    font-weight: 600px;
+    background-color: white;
+    transition:color 0.3s ease, background-color 0.3s ease ;   
+}
+
+.dropdownMenu div:hover{
+    background-color: #f4f4ff;
+    color: #6C63FF;
+    box-shadow: 0 3px 8px rgba(108, 99, 255, 0.15);
+}
+
+.prioritySpan{
+    width: 70px;
+    background-color: #ccc3c3;
+    border-radius: 15px;
+    margin-left: 15px;
+    text-align: center;
 }
 
