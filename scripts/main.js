@@ -5,6 +5,7 @@ import { handleDropDown } from "./dropDown.js";
 import { filterTask } from "./filter.js";
 import { dragItems } from "./drag.js";
 import { createDropdownmenu } from "./priority.js";
+import { createCategoryMenu } from "./category.js";
 
 
 elements.addTaskButton.addEventListener("click",addTask);
@@ -50,3 +51,7 @@ export const quill = new Quill('#richEditorTaskDiv', {
   elements.priorityDiv.addEventListener("click",()=>{
     createDropdownmenu();
   });
+
+  elements.categoryDiv.addEventListener("click",()=>{
+    createCategoryMenu();
+  })

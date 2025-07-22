@@ -23,45 +23,54 @@ export function createDropdownmenu(){
    medium.textContent = "medium Priority";
 
  
-
    elements.priorityDiv.appendChild(menu);
    menu.appendChild(low);
    menu.appendChild(medium);
    menu.appendChild(high);
 
    high.addEventListener("click",()=>{
-    elements.priorityDiv.textContent = "high Priority";
+    elements.priorityText.textContent = "high";
 
    });
 
    medium.addEventListener("click",()=>{
-    elements.priorityDiv.textContent = "medium Priority";
+    elements.priorityText.textContent = "medium";
    })
 
    low.addEventListener("click",()=>{
-    elements.priorityDiv.textContent = "low Priority";
+    elements.priorityText.textContent = "low";
    })
 }
+
 
 export function createPriority(){
     const pSpan = document.createElement("span");
     pSpan.className = "prioritySpan";
-    pSpan.textContent = "";
-    pSpan.textContent = elements.priorityDiv.textContent;
-    if(pSpan.textContent ==="high"){
-       pSpan.style.backgroundColor = "#ff4444";
-       pSpan.style.color = "#000000"
-    }
 
-    if(pSpan.textContent ==="medium"){
-       pSpan.style.backgroundColor = "#ffcc44";
-       pSpan.style.color = "#000000";
-    }
+    const priorityText = elements.priorityText.textContent;
 
-    if(pSpan.textContent ==="low"){
-       pSpan.style.backgroundColor = "#44cc44 ";
-       pSpan.style.color = "#000000";
-    }
+    const {level, backgroundColor , textColor} = priorityStyle(priorityText);
+
+    pSpan.textContent = level;
+    pSpan.style.backgroundColor = backgroundColor;
+    pSpan.style.color = textColor;
+  
+    
     return pSpan;
+}
+
+
+export function priorityStyle(text){
+       if (text === "high") {
+        return { level: "high", backgroundColor: "#ff4444", textColor: "#000000" };
+    }
+    if (text === "medium") {
+        return { level: "medium", backgroundColor: "#ffcc44", textColor: "#000000" };
+    }
+    if (text === "low") {
+        return { level: "low", backgroundColor: "#44cc44", textColor: "#000000" };
+    }
+    
+    return { level: "low", backgroundColor: "#44cc44", textColor: "#000000" };
 }
 

@@ -388,28 +388,52 @@ footer{
 
 .priorityDiv{
     height:50px;
-    font-size: 1rem;
     margin-top: 10px;
     border-radius: 15px;
-    width: 100%;;
+    width: 50%;;
     border: none;
     background-color: white;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    
+    align-self: flex-start;
+    font-family:  'Inter', sans-serif;
 }
+
+.categoryDiv{
+    height:50px;
+    margin-top: 10px;
+    border-radius: 15px;
+    width: 50%;;
+    border: none;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    font-family:  'Inter', sans-serif;
+    flex-direction: column;
+}
+
+ .priorityCategoryWrapper{
+    display: flex;
+    font-size: 1rem;
+    width: 100%;
+    border-radius: 15px;
+    gap:10px;   
+ }
+
 
 .fa-angle-down{
     display: flex;
     align-self: flex-end;
     position: relative;
+    bottom:10px;
+    right: 5px;
     
 }
 
 .dropdownMenu{
     height: 100px;
-    width: 100%;
+    width: 50%;
     position: absolute;
     top: 400px;
     z-index: 1;
@@ -442,9 +466,52 @@ footer{
 
 .prioritySpan{
     width: 70px;
-    background-color: #ccc3c3;
     border-radius: 15px;
     margin-left: 15px;
     text-align: center;
 }
 
+.categoryMenuDiv{
+    height: 150px;
+    width: 50%;
+    position: absolute;
+    top: 400px;
+    z-index: 1;
+    background-color: white;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+}
+
+.categoryMenuDiv div{
+    color: #333;
+    font-family:  'Inter', sans-serif;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 5px 8px;
+    border: none;
+    border-radius: 8px;
+    margin: 5px 5px;
+    text-align: left;
+    font-weight: 600px;
+    background-color: white;
+    transition:color 0.3s ease, background-color 0.3s ease ;   
+}
+
+.categoryMenuDiv div:hover{
+    background-color: #f4f4ff;
+    color: #6C63FF;
+    box-shadow: 0 3px 8px rgba(108, 99, 255, 0.15);
+}
+
+.categorySpan{
+    width: 70px;
+    border-radius: 15px;
+    margin-left: 15px;
+    text-align: center;
+}
+
+.priorityText , .categoryText{
+    width: 50%;
+    margin-top: 9px;
+}

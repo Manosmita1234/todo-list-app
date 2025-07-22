@@ -11,5 +11,8 @@
     taskContainerWrapper: document.getElementById("taskContainerWrapper"),
     filterTaskButton: document.getElementById("filterButton"),
     dropdownIcon: document.querySelector(".toggle-icon"),
-    priorityDiv: document.querySelector(".priorityDiv")
+    priorityDiv: document.querySelector(".priorityDiv"),
+    priorityText: document.querySelector(".priorityText"),
+    categoryDiv: document.querySelector(".categoryDiv"),
+    categoryText: document.querySelector(".categoryText")
  };
