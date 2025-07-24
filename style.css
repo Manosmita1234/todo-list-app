@@ -15,11 +15,6 @@ h1{
    font-family: 'Quicksand', sans-serif;
 }
 
-footer{
-    color: #888;
-    font-family: 'Inter', sans-serif;  
-    margin-top: 20px;
-}
 #container{
     display: flex;
     flex-direction: column;
@@ -74,7 +69,7 @@ footer{
 }
 
 #filterButton:hover{
-    background-color: #f4f4ff; ;
+    background-color: #f4f4ff; 
 }
 
 .filterTaskDiv{
@@ -110,8 +105,8 @@ footer{
     background-color: #f4f4ff;
     color: #6C63FF;
     box-shadow: 0 3px 8px rgba(108, 99, 255, 0.15);
-
 }
+
 .taskContainer{
   height: 60px;
   width: 400px;
@@ -227,14 +222,15 @@ footer{
 }
 
 .fa-ellipsis-vertical{
-    background-color: white;
     border: none;
+    background-color: white;
     position: relative;
     margin-left: auto;
     padding: 12px;
     border-radius: 10px;
     font-size: 1rem;
 }
+
 
 .fa-ellipsis-vertical:hover{
     background-color: #f4f4ff; ;
@@ -275,6 +271,7 @@ footer{
     color: #6C63FF;
     box-shadow: 0 3px 8px rgba(108, 99, 255, 0.15);
 }
+
 .editTask{ 
     border: 2px solid royalblue;
     outline: none;
@@ -292,24 +289,31 @@ footer{
     box-shadow: 0 0 5px rgba(65, 105, 225, 0.5);
 }
 
+#dropDownBtn {
+  position: relative;
+  border: none;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  background-color: rgb(246, 255, 255);
+  bottom: 75px;
+  left: 160px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
 
-#dropDownBtn{
-     background-color:rgb(246, 255, 255) ;
+
+#dropDownBtn .fa-ellipsis-vertical{
      color: black;
+     background-color: rgb(246, 255, 255);
      cursor: pointer;
      font-size: 21px;
-     padding: 16px 20px;
      border: none;
-     transition: background-color 0.5s ease;
      position: absolute;
-     top:10px;
-     right: 10px;
      border-radius: 15px;
 }
 
-#dropDownBtn:hover{
-    background-color:  #f0f0f0;
-}
 
 .dropDownContainer{
     display: flex;
@@ -323,7 +327,7 @@ footer{
     border-radius: 8px;
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
     width: 170px;
-    top:60px;
+    top:55px;
     z-index: 1;    
 }
 
@@ -435,7 +439,7 @@ footer{
     height: 100px;
     width: 50%;
     position: absolute;
-    top: 400px;
+    top: 425px;
     z-index: 1;
     background-color: white;
     border: none;
@@ -472,10 +476,10 @@ footer{
 }
 
 .categoryMenuDiv{
-    height: 150px;
+    height: 170px;
     width: 50%;
     position: absolute;
-    top: 400px;
+    top: 425px;
     z-index: 1;
     background-color: white;
     border: none;

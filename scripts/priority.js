@@ -62,15 +62,14 @@ export function createPriority(){
 
 export function priorityStyle(text){
        if (text === "high") {
-        return { level: "high", backgroundColor: "#ff4444", textColor: "#000000" };
+        return { level: "high", backgroundColor: "#fee2e2", textColor: "#991b1b" };
     }
     if (text === "medium") {
-        return { level: "medium", backgroundColor: "#ffcc44", textColor: "#000000" };
+        return { level: "medium", backgroundColor: "#fefce8", textColor: "#92400e" };
     }
     if (text === "low") {
-        return { level: "low", backgroundColor: "#44cc44", textColor: "#000000" };
+        return { level: "low", backgroundColor: "#d1fae5", textColor: "#166543" };
     }
-    
-    return { level: "low", backgroundColor: "#44cc44", textColor: "#000000" };
+    return { level: "low", backgroundColor: "#d1fae5", textColor: "#166543" };
 }
 

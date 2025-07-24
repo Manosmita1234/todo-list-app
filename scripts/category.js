@@ -70,25 +70,25 @@ export function createCategorySpan(){
 
 export function categoryStyle(text){
    if(text === "work"){
-    return{type: "work", backgroundColor:"#4B7BEC", textColor: "#000000"}
+    return{type: "work", backgroundColor:"#dbeafe", textColor: "#1e40af"}
    }
 
    if(text === "personal"){
-    return{type: "personal", backgroundColor:"#A55EEA", textColor: "#000000"}
+    return{type: "personal", backgroundColor:"#ede9fe", textColor: "#5b21b6"}
    }
 
    if(text === "shopping"){
-    return{type: "shopping", backgroundColor:"#F19066", textColor: "#000000"}
+    return{type: "shopping", backgroundColor:"#ffedd5", textColor: "#9a3412"}
    }
 
    if(text === "health"){
-    return{type: "health", backgroundColor:"#20BF6B", textColor: "#000000"}
+    return{type: "health", backgroundColor:"#fce7f3", textColor: "#9d174d"}
    }
 
    if(text === "learning"){
-    return{type: "learning", backgroundColor:"	#FED330", textColor: "#000000"}
+    return{type: "learning", backgroundColor:"#e0e7ff", textColor: "#3730a3"}
    }
 
-   return{type: "personal", backgroundColor:"#A55EEA", textColor: "#000000"}
+   return{type: "personal", backgroundColor:"#ede9fe", textColor: "#1e40af"}
 }
 
