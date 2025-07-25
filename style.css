@@ -4,6 +4,7 @@ body{
     background-color: rgb(246, 255, 255);
 }
 
+
 hr{
     width: 100%;
     border-top: 3px solid rgba(157, 149, 149, 0.2);
@@ -19,15 +20,36 @@ h1{
     display: flex;
     flex-direction: column;
     align-items: center;  
-    width: 400px;
     gap:15px;
     position: relative;  
 }
 
+.addTaskContainer{
+    height: 350px;
+    width: 75vw;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.addTaskContainer div{
+    width: 95%;
+}
+
 .richTextEditorWrapper{
-    margin:2rem 0;
-    width: 100%;
+    margin:2rem ;
     padding: 0px;
+    margin-top: 0px;
+    
+}
+
+#richEditorTaskDiv{
+    width: 100%;
 }
 
 #searchFilterDiv{
@@ -40,9 +62,11 @@ h1{
     padding:15px;
     font-size: 1rem;
     margin-top: 10px;
+    min-height: 50px;
     border-radius: 15px;
     width: 93%;;
     border: none;
+    border: 1px solid #d3d3d3;
 }
 
 #searchTask:focus{
@@ -58,6 +82,8 @@ h1{
     width: 50px;
     height: 50px;
     margin-top: 8px;
+    border: 1px solid #d3d3d3;
+
     position: relative;
 }
 
@@ -108,8 +134,8 @@ h1{
 }
 
 .taskContainer{
-  height: 60px;
-  width: 400px;
+  height: 80px;
+  width: 75vw;
   background-color: white;
   margin-top: 15px;
   display: flex;
@@ -126,7 +152,7 @@ h1{
     padding: 15px;
     font-size: 1rem;
     margin-top: 20px;
-    border-radius: 15px;
+    border-radius: 10px;
     width: 380px;
     border: none;
 }
@@ -138,10 +164,10 @@ h1{
 }
 
 #addTaskButton{
-    width:400px;
+    width:100%;
     padding: 15px;
     border-radius: 10px;
-    text-align: left;
+    text-align: center;
     border:2px solid rgb(74, 74, 179);
     color: rgb(13, 13, 195);
     cursor: pointer;
@@ -184,14 +210,21 @@ h1{
 }
 
 .dataSpan{
-    width: 150px;
+    width: 130px;
     height: auto;
     margin-left: 11px;
     font-size: 0.8rem;
     color: #888;   
-    margin-bottom: 3px;
+    margin-top: 7px;
+    border: 1px solid rgb(198, 195, 195);
+    border-radius: 10px;
+    padding: 3px 3px;
 }
 
+.taskInfoDiv{
+    display: flex;
+    gap: 20px;
+}
 
 .editDivContainer{
     width: 390px;
@@ -242,6 +275,7 @@ h1{
     background-color: white;
     position:absolute;
     right: 0;
+    top: 40px;
     display: flex;
     flex-direction: column;
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
@@ -290,16 +324,15 @@ h1{
 }
 
 #dropDownBtn {
-  position: relative;
+  position: absolute;
+  top: 8px;
+  right: 8px;
   border: none;
   width: 40px;
   height: 40px;
   display: flex;
   background-color: rgb(246, 255, 255);
-  bottom: 75px;
-  left: 160px;
-  justify-content: center;
-  align-items: center;
+  margin-left: auto;
   cursor: pointer;
 }
 
@@ -390,10 +423,17 @@ h1{
   opacity: 0.5;
 }
 
-.priorityDiv{
+.priorityCategoryWrapper{
+    display: flex;
+    width: 100%;
+    border-radius: 15px;
+    gap: 10px;  
+ }
+
+.priorityDiv , .categoryDiv{
     height:50px;
     margin-top: 10px;
-    border-radius: 15px;
+    border-radius: 10px;
     width: 50%;;
     border: none;
     background-color: white;
@@ -401,29 +441,15 @@ h1{
     justify-content: center;
     flex-direction: column;
     align-self: flex-start;
-    font-family:  'Inter', sans-serif;
+    border: 1px solid #d3d3d3;
+    position: relative;
 }
 
-.categoryDiv{
-    height:50px;
-    margin-top: 10px;
-    border-radius: 15px;
-    width: 50%;;
-    border: none;
-    background-color: white;
-    display: flex;
-    justify-content: center;
+.priorityText, .categoryText{
+    margin-left: 10px;
     font-family:  'Inter', sans-serif;
-    flex-direction: column;
+    font-size: 1.1rem;
 }
-
- .priorityCategoryWrapper{
-    display: flex;
-    font-size: 1rem;
-    width: 100%;
-    border-radius: 15px;
-    gap:10px;   
- }
 
 
 .fa-angle-down{
@@ -431,27 +457,30 @@ h1{
     align-self: flex-end;
     position: relative;
     bottom:10px;
-    right: 5px;
-    
+    right: 5px; 
+    color: gray;
 }
 
 .dropdownMenu{
-    height: 100px;
-    width: 50%;
+    height: 110px;
     position: absolute;
-    top: 425px;
+    top: 50px;
     z-index: 1;
     background-color: white;
     border: none;
-    border-radius: 15px;
+    border-radius: 10px;
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    left: 0;
+    overflow: hidden;
 }
 
 .dropdownMenu div{
     color: #333;
     font-family:  'Inter', sans-serif;
+    width: 100%;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 17px;
     padding: 5px 8px;
     border: none;
     border-radius: 8px;
@@ -468,30 +497,35 @@ h1{
     box-shadow: 0 3px 8px rgba(108, 99, 255, 0.15);
 }
 
-.prioritySpan{
-    width: 70px;
+.prioritySpan, .categorySpan{
+    width: 80px;
+    height: 25px;
     border-radius: 15px;
-    margin-left: 15px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:5px;
 }
 
 .categoryMenuDiv{
-    height: 170px;
+    height: 180px;
     width: 50%;
     position: absolute;
-    top: 425px;
+    top: 50px;
     z-index: 1;
     background-color: white;
     border: none;
-    border-radius: 15px;
+    border-radius: 10px;
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
 .categoryMenuDiv div{
     color: #333;
+    width: 100%;
     font-family:  'Inter', sans-serif;
+    font-size: 17px;
     cursor: pointer;
-    font-size: 15px;
     padding: 5px 8px;
     border: none;
     border-radius: 8px;
@@ -508,14 +542,21 @@ h1{
     box-shadow: 0 3px 8px rgba(108, 99, 255, 0.15);
 }
 
-.categorySpan{
-    width: 70px;
-    border-radius: 15px;
-    margin-left: 15px;
-    text-align: center;
-}
 
 .priorityText , .categoryText{
     width: 50%;
     margin-top: 9px;
+}
+
+.ql-toolbar.ql-snow {
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    padding: 8px;
+    width: 100%;
+}
+
+.dragIcon{
+    color: gray;
+    font-size: 20px;
 }

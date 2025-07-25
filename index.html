@@ -11,27 +11,32 @@
 </head>
 <body>
     <div id="container">
-  <h1>My Tasks</h1>
+  <h1>Todo App</h1>
 
         <div id="dropDownDiv"> <button id="dropDownBtn"><i class="fa-solid fa-ellipsis-vertical"></i></button></div>
 
-        <div id="addTaskButtonDiv">
-            <button id="addTaskButton">+ Add Task</button>
-        </div>
 
-         <div class="richTextEditorWrapper">
+        <div class="addTaskContainer">
+            <div class="richTextEditorWrapper">
              <div id="richEditorTaskDiv"></div>
          </div>
 
          <div class="priorityCategoryWrapper">
-         <div class="priorityDiv"><span class="priorityText">priority</span> <i class="fa-solid fa-angle-down toggle-icon"></i></div>
+
+         <div class="priorityDiv"><span class="priorityText">Priority</span> <i class="fa-solid fa-angle-down toggle-icon"></i></div>
          <div class="categoryDiv"><span class="categoryText">Category</span> <i class="fa-solid fa-angle-down toggle-icon"></i></div>
+
          </div>
 
+          <div id="addTaskButtonDiv">
+            <button id="addTaskButton">+ Add Task</button>
+         </div>
+
+        </div>
 
 
          <div id="searchFilterDiv">
-             <input type="search" placeholder="Search task" id="searchTask"/>
+             <input type="search" placeholder="Search task..." id="searchTask"/>
              <button id="filterButton"> 
                  <i class="fa-solid fa-filter"></i>
              </button>
