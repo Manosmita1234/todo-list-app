@@ -87,6 +87,8 @@ export function createElements(taskText){
         checkbox,
         taskLabel,
         dataSpan,
+        prioritySpan,
+        categorySpan,
         checkboxLabelContainer,
         editDivContainer,
         editTask,
@@ -120,7 +122,7 @@ function createEditDeleteContainer(){
 
 export function addTask(){
  
-   let taskText = quill.root.innerHTML.trim();
+   let taskText = quill.getText().trim();
         if(taskText === "" || taskText === "<p><br></p>"){
         alert("Please Enter a task");
         return;
@@ -139,7 +141,7 @@ export function addTask(){
 }
 
 function attachListeners({taskContainer,checkbox,
-           taskLabel,dataSpan,checkboxLabelContainer,
+           taskLabel,dataSpan,prioritySpan, categorySpan, checkboxLabelContainer,
            editDivContainer,saveChangeIcon,editTask,editTaskbtn,deleteTaskbtn}){
 
     checkbox.addEventListener("click",()=>{
@@ -150,31 +152,38 @@ function attachListeners({taskContainer,checkbox,
     editTaskbtn.addEventListener("click",()=>{
         checkboxLabelContainer.style.display = "none";
         dataSpan.style.display = "none";
+        prioritySpan.style.display = "none";
+        categorySpan.style.display = "none";
         editDivContainer.style.display = "flex";
         editTask.focus();
         });
 
-    deleteTaskbtn.addEventListener("click",()=>{
-             const nextSibling = taskContainer.nextSibling;
 
-        let deletedtaskData = {
-            taskText: taskLabel.innerHTML,
-            checkStatus:checkbox.checked,
-            nextSibling: nextSibling
-        }
-     
-        allTasksArray = allTasksArray.filter(task => task.taskContainer !== taskContainer);
-        taskContainer.remove();
-        storeDataToLocalStorage();
+    deleteTaskbtn.addEventListener("click", () => {
+    const parent = taskContainer.parentNode;
+    const nextSibling = taskContainer.nextSibling;
 
-        handleUndoDiv(deletedtaskData.taskText,deletedtaskData.checkStatus,deletedtaskData.nextSibling);
+    let deletedtaskData = {
+        taskText: taskLabel.innerHTML,
+        checkStatus: checkbox.checked,
+        parent: parent,
+        nextSibling: nextSibling
+    };
 
-        })    
+    allTasksArray = allTasksArray.filter(task => task.taskContainer !== taskContainer);
+    taskContainer.remove();
+    storeDataToLocalStorage();
+
+    handleUndoDiv(deletedtaskData);
+});
+
 
     saveChangeIcon.addEventListener("click",()=>{
         let newTask = editTask.value;
         checkboxLabelContainer.style.display = "flex";
         dataSpan.style.display = "flex";
+        prioritySpan.style.display = "flex";
+        categorySpan.style.display = "flex";
         taskLabel.innerHTML = newTask;
         editDivContainer.style.display = "none";
 
@@ -208,10 +217,11 @@ function createEditDiv(editDivValue){
     return {editDivContainer,editTask,saveChangeIcon} ;
 }
 
-function handleUndoDiv(taskText,checkbox,nextSibling){
+
+function handleUndoDiv({ taskText, checkStatus, parent, nextSibling }) {
     let undoDiv = document.createElement("div");
     undoDiv.className = "undoDiv";
-    undoDiv.textContent = "task deleted";
+    undoDiv.textContent = "Task deleted ";
 
     let undoButton = document.createElement("button");
     undoButton.className = "undoButton";
@@ -220,38 +230,44 @@ function handleUndoDiv(taskText,checkbox,nextSibling){
     let closeIcon = document.createElement("i");
     closeIcon.className = "fa-solid fa-xmark";
     closeIcon.style.cursor = "pointer";
+    closeIcon.style.marginLeft = "auto";
+    closeIcon.style.marginRight = "15px";
 
     if (nextSibling) {
-  elements.container.insertBefore(undoDiv, nextSibling);
-} else {
-  elements.container.appendChild(undoDiv);
-}
+        parent.insertBefore(undoDiv, nextSibling);
+    } else {
+        parent.appendChild(undoDiv);
+    }
 
     undoDiv.appendChild(undoButton);
     undoDiv.appendChild(closeIcon);
 
-    setTimeout(()=>{
-        undoDiv.style.display = "none";
-    },5000);
+    setTimeout(() => {
+        undoDiv.remove();
+    }, 50000);
 
-    undoButton.addEventListener("click",()=>{
-        const existing = document.querySelector(".undoDiv");
-        if(existing){
-            undoDiv.remove();
+
+    undoButton.addEventListener("click", () => {
+        undoDiv.remove();
+
+        let task = createElements(taskText);
+        task.checkbox.checked = checkStatus;
+        markCompleteTask(task.checkbox, task.taskLabel);
+        attachListeners(task);
+
+        if (nextSibling) {
+            parent.insertBefore(task.taskContainer, nextSibling);
+        } else {
+            parent.appendChild(task.taskContainer);
         }
-         let task = createElements(taskText);
-         task.checkbox.checked = checkbox;
-         markCompleteTask(task.checkbox ,task.taskLabel)
-         attachListeners(task);
 
-         storeDataToLocalStorage();
+        storeDataToLocalStorage();
     });
 
-    closeIcon.addEventListener("click",()=>{
+    closeIcon.addEventListener("click", () => {
         undoDiv.remove();
-    })
+    });
 }
-
     
 function markCompleteTask(checkbox,taskLabel){
     if(checkbox.checked){

@@ -1,11 +1,18 @@
 # ToDo List App
+A simple, feature rich toDo list built with vanilla js to increase your productivity
 
-## How to add a task
--Enter the task and then click add Task button
+## Features
+-Add, edit and delete tasks.
+-search and filter options
+-categories and priorities 
 
-## How to edit the already written task
-- click on the pencil icon present on the right side of the task
-- after clicking it input box with input value in it will show
-- edit your task
-- update the content of label with edited task
-- after editing click the tick mark to save your edited task 
+## technologies
+-HTML5
+-CSS
+-Javascript(ES6+) 
+
+## Usage
+- Click **Add Task** to create a new task.
+- Use the **search bar** to find tasks.
+- Drag and drop tasks to reorder them.
+- Use **filters** to view tasks by priority/category.

@@ -83,13 +83,13 @@ h1{
     height: 50px;
     margin-top: 8px;
     border: 1px solid #d3d3d3;
-
     position: relative;
 }
 
 .fa-filter{
     font-size: 1.2rem;
-}
+} 
+
 .fa-filter:hover{
     color: #6b6a6a;
 }
@@ -227,13 +227,14 @@ h1{
 }
 
 .editDivContainer{
-    width: 390px;
+    width: 74vw;
     border-radius: 5px;
     height: 60px;
     background-color: white;
     border: none;
     font-family: 'Inter', sans-serif;
     margin-top: 5px;
+    margin-left: 2px;
     display: flex;
     align-items: center; 
 }
@@ -389,12 +390,12 @@ h1{
 
 .undoDiv{
     height:60px;
-    width: 400px;
+    width: 75vw;
     background-color: #e6ffe6; 
     color: #2e7d32;
     display: flex;
     align-items: center;
-    justify-content:space-around;
+    justify-content:center;
     font-size: 20px;
     font-weight: 400;
     border-radius: 15px;
@@ -406,13 +407,12 @@ h1{
     width: 60px;
     height: 40px;
     border-radius: 10px;
-    margin-left: 180px;
     cursor: pointer;
     border: none;
+    margin-left: 47vw;
     transition: background 0.3 ease;
     color: white;
-    background-color: #4caf50;
-    
+    background-color: #4caf50;   
 }
 
 .undoButton:hover {
